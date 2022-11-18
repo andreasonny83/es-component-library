@@ -1,0 +1,26 @@
+{
+  "name": "@andreasonny83/es-component-library",
+  "version": "1.0.0",
+  "description": "Tree-shakeable component library",
+  "main": "index.js",
+  "engines": {
+    "node": ">=16",
+    "npm": "use pnpm",
+    "pnpm": ">=7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreasonny83/es-component-library.git"
+  },
+  "author": "andreasonny83",
+  "license": "MIT",
+  "publishConfig": {
+    "@andreasonny83:registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "test": "exit 0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.14"
+  }
+}
