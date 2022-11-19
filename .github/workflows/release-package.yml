@@ -5,23 +5,34 @@ on:
     types: [created]
 
 jobs:
-  test:
+  install:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm test
+      - run: npx pnpm install
+
+  test:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npx pnpm test
 
   build:
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm run build
+      - run: npx pnpm build
 
   publish-gpr:
     needs: [test, build]
