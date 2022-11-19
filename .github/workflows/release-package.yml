@@ -21,10 +21,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm build
+      - run: npm run build
 
   publish-gpr:
-    needs: build
+    needs: [test, build]
     runs-on: ubuntu-latest
     permissions:
       packages: write
