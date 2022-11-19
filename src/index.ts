@@ -9,3 +9,4 @@ export const myComponent = () => {
 };
 
 export { Button } from './components/Button';
+export { Paragraph } from './components/Paragraph';
