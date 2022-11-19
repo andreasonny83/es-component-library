@@ -27,6 +27,7 @@
     "build": "rm -rf dist && tsc && ./build.js"
   },
   "devDependencies": {
+    "@types/react": "^18.0.25",
     "esbuild": "^0.15.14",
     "esbuild-node-externals": "^1.5.0",
     "react": "^18.0.0",
