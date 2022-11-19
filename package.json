@@ -2,7 +2,6 @@
   "name": "@andreasonny83/es-component-library",
   "version": "1.0.0",
   "description": "Tree-shakeable component library",
-  "main": "index.js",
   "engines": {
     "node": ">=16",
     "npm": "use pnpm",
@@ -17,10 +16,22 @@
   "publishConfig": {
     "@andreasonny83:registry": "https://npm.pkg.github.com"
   },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "exit 0"
+    "test": "exit 0",
+    "build": "rm -rf dist && tsc && ./build.js"
   },
   "devDependencies": {
-    "esbuild": "^0.15.14"
+    "esbuild": "^0.15.14",
+    "esbuild-node-externals": "^1.5.0",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "unique-names-generator": "^4.7.1"
   }
 }

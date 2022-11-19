@@ -5,16 +5,23 @@ on:
     types: [created]
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm test
+
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/setup-node@v3
-
         with:
           node-version: 16
-      - run: npm test
+      - run: npm build
 
   publish-gpr:
     needs: build
@@ -24,11 +31,9 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/setup-node@v3
-
         with:
-          node-version: 12
+          node-version: 16
           registry-url: https://npm.pkg.github.com/
       - run: npm publish
         env:
