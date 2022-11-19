@@ -5,37 +5,7 @@ on:
     types: [created]
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npx pnpm install
-
-  test:
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npx pnpm test
-
-  build:
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npx pnpm build
-
-  publish-gpr:
-    needs: [test, build]
+  publish-package:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -46,6 +16,11 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
+      - name: Install dependencies ⏲
+        run: npx pnpm install
+      - name: build 🔧
+        run: npx pnpm build
+      - name: Publish 📦
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
